@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .openBtn {
+            display: block;
+            margin: 50px auto;
+            }
+        .modal {
+            position: fixed;
+            left: 0%;
+            top: 0%;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0,0,0,0.5);
+            }
+        .modal__content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            }
+        .modal__content-inner{
+            background-color: white;
+            width: 500px;
+            text-align: center;
+            padding: 50px;
+            }
+    </style>
+</head>
+<body>
+    <div id ="app">
+        <button v-on:click="openModal">開く</button>
+        <div  v-on:click="closeModal" v-show="showContent" id="modal" class="modal">
+            <div class="modal__content">
+                <div v-on:click.stop class="modal__content-inner">
+                <p>モーダルウィンドウ</p>
+                <button v-on:click="closeModal">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el : '#app',
+            data: {
+                showContent: false
+            },
+            methods: {
+                openModal: function(){
+                    this.showContent = true
+                },
+                closeModal: function(){
+                    this.showContent = false
+                }
+            }
+        })
+    </script>
+</body>
+</html>
